@@ -1,0 +1,180 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.adobe.webserver</groupId>
+	<artifactId>khemka-webserver</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0</version>
+	<name>khemka-webserver</name>
+	<url>http://maven.apache.org</url>
+
+<properties>
+   <!--  <buildDirectory>${project.basedir}/../target</buildDirectory> -->
+    <buildDirectory>${project.build.directory}</buildDirectory>
+    <distributionDirectory>${project.basedir}/../dist</distributionDirectory>
+    <documentationDirectory>${project.basedir}/..</documentationDirectory>
+</properties>
+
+<profiles>
+    <profile>
+        <id>target</id>
+        <build>
+            <directory>${buildDirectory}</directory>
+        </build>
+    </profile>
+</profiles>
+
+<build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.2.1</version>
+        <configuration>
+          <descriptors>
+            <descriptor>src/main/descriptors/bin.xml</descriptor>
+          </descriptors>
+        </configuration>
+        
+      </plugin>
+      
+      
+       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9.1</version>
+        <executions>
+			<execution>
+				<goals>
+					<goal>javadoc</goal>
+				</goals>
+				<phase>package</phase>
+			</execution>
+		</executions>
+      </plugin>
+      
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.8</version>
+        <executions>
+          <execution>
+            <id>copy-installed</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>${project.groupId}</groupId>
+                  <artifactId>${project.artifactId}</artifactId>
+                  <version>${project.version}</version>
+                  <type>${project.packaging}</type>
+                  <overWrite>true</overWrite>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${distributionDirectory}/lib</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
+      
+     <!--  
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.6</version>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+           
+            <phase>package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+				<overwrite>true</overwrite>
+              <outputDirectory>${distributionDirectory}/webapps/docs/apidocs</outputDirectory>
+              <resources>          
+                <resource>
+                  <directory>${buildDirectory}/site/apidocs</directory>
+                  <includes>
+			        <include>*</include>
+			      </includes>
+                </resource>
+              </resources>              
+            </configuration>            
+          </execution>
+        </executions>
+      </plugin>
+       -->
+       <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.6</version>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <!-- here the phase you need -->
+            <phase>package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+				<overwrite>true</overwrite>
+              <outputDirectory>${distributionDirectory}/webapps/docs</outputDirectory>
+              <resources>          
+                <resource>
+                  <directory>${documentationDirectory}</directory>
+                   <includes>
+			        <include>README*</include>
+			        <include>LICENSE*</include>
+			        <include>NOTICE*</include>
+			      </includes>
+                </resource>
+                
+                 <resource>
+                  <directory>${buildDirectory}/site</directory>
+                  
+                </resource>
+                
+              </resources>              
+            </configuration>            
+          </execution>
+        </executions>
+      </plugin>
+      
+     
+      
+      
+ 
+    </plugins>
+  </build>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.1.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>4.0.3</version>
+		</dependency>
+	</dependencies>
+
+
+</project>

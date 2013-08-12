@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties version="1.0">
+	<entry key="port">80</entry>
+	<entry key="www_root_path">webapps</entry>
+	<entry key="www_upload_path"></entry>
+	<entry key="thread_pool_size">50</entry>
+	<entry key="hostname"></entry>
+</properties>

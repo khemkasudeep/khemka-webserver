@@ -1,0 +1,44 @@
+#documentation {
+  display: table-cell;
+  width: 450px;
+  height: 300px;
+  float: left;
+  background-color:#FFCCFF;
+  position:absolute;
+  left:50px;
+  text-align: center;
+ 
+ 
+}
+
+
+#test {
+  float: left;
+  margin-left: 550px;
+  width: 450px;
+  height: 300px;
+  background-color:#FFCCFF;
+  position:relative;
+  left:20px;
+  text-align: center;
+  
+}
+
+
+.curved {
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+   
+}
+
+h1 {color:#00ff00;
+	font-family:"Times New Roman", Times, serif;
+	font-style:oblique;
+}
+h2 {color:rgb(255,0,0);
+	font-style:oblique;
+}
+
+

@@ -1,0 +1,34 @@
+=========================================================================
+   ==  Adobe License, Version 1.0,  ==
+   ==  khemka-webserver-1.0 distribution.                ==
+   =========================================================================
+
+   Adobe HTTP Server
+   Copyright 
+
+   This product includes software developed at
+   Adobe systems India Pvt Ltd
+
+   sources used for developing this server - 
+   1. http://docs.oracle.com/javase/7/docs/api/
+   2. http://docs.oracle.com/javase/tutorial/
+   3. https://weblogs.java.net/blog/potty/archive/2012/05/10/string-searching-algorithms-part-ii
+   
+	functionalities implemented - 
+	1. GET
+	2. POST - 
+		it accepts multipart post request as well. 
+		In multipart request if you don't provide filename(in Content-Disposition), your file won't get uploaded.
+		We assume that the request-uri provided by you in multipart post request is path where you want to upload your data.
+		this path must be relative to www_root_path
+		If this path don't/can't be exists/created, we try uploading in default upload location (denoted by - www_root_path/www_upload_path). 
+		Notice that  www_upload_path is relative to www_root_path
+		
+		In non multipart request, we simple log the request.
+		
+		POST allows you to upload a file with the same name. Every time you send such file, it is uploaded with the name filename (index).extension, where
+		index goes from 2 to 1024. Beyond this, another conventionis used which is UUID__filename.extension
+
+	Known Issues
+	1. In a request with trailing dots, dots are ignored. for e.g. Get http://server:port/index.html and http://server:port/index.html...  are equivalent
+	2. 
